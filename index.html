@@ -44,7 +44,96 @@
 			  cursor:none;
 			}
 
+			.wrapper {
+			 background-color: red;
+			  position:absolute;
+			  width:100vw;
+			  height:100vw;
+			}
+
+			.cursor {
+			  
+			  position: absolute;
+			  width: 24px;
+			  height: 24px;
+			  top: -50%;
+			  left: -50%;
+			  margin: -15px 0 0 -15px;
+			  border-radius: 50%;
+			  background-color: white;
+			  backface-visibility: hidden;
+			  mix-blend-mode: difference;
+			  z-index: 100000;
+			  pointer-events: none;
+			  
+			}
+
+			.cursor.is-moving {
+			}
+
+			.content_cursor {
+			  position:relative;
+			  height:100%;
+			}
+
 		</style>
+		<div id="myCursor" class="cursor"></div>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript">
+		  var isMobile = false;
+		  function getMobileOperatingSystem() {
+		  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+		      // Windows Phone must come first because its UA also contains "Android"
+		    if (/windows phone/i.test(userAgent)) {
+		      	isMobile = true;
+		        return "Windows Phone";
+		    }
+
+		    if (/android/i.test(userAgent)) {
+		      	isMobile = true;
+		        return "Android";
+		    }
+
+		    // iOS detection from: http://stackoverflow.com/a/9039885/177710
+		    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+		      	isMobile = true;
+		        return "iOS";
+		    }
+			
+		    isMobile = false;
+		    return "unknown";
+		}
+		  
+		  var $cursor = $('.cursor');
+
+		function moveCursor(e) {
+		  $cursor.addClass('is-moving');
+		  $cursor.css({"top": e.pageY, "left": e.pageX});
+
+		  clearTimeout(timer2);
+
+		   var timer2 = setTimeout(function() {
+		       $cursor.removeClass('is-moving');
+		   }, 300);
+		}
+		  
+		 
+		$(window).on('mousemove', moveCursor);
+		  
+		$( document ).ready(function() {
+			
+		  getMobileOperatingSystem();
+		  
+		  if(isMobile){
+		    console.log("mobile OS");
+		    $cursor.css("opacity", "0");
+		  }else{
+		    console.log("desktop OS");
+		    $cursor.css("opacity", "1");
+		  }
+		});
+		</script>
 	</head>
 
 	<body>
@@ -184,6 +273,8 @@
 
 				container.appendChild( renderer.domElement );
 				window.addEventListener( 'resize', onWindowResize, false );
+				document.addEventListener('mouseenter', onDocumentMouseEnter, false);
+				document.addEventListener('mouseleave', onDocumentMouseLeave, false);
 			}
 
 
@@ -191,6 +282,18 @@
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+			function onDocumentMouseEnter(event){
+				var cursorElem = document.getElementById('myCursor');
+				cursorElem.style.visibility = 'visible';
+
+			}
+
+			function onDocumentMouseLeave(event){
+				var cursorElem = document.getElementById('myCursor');
+				cursorElem.style.visibility = 'hidden';
+
 			}
 			//
 			function animate() {
