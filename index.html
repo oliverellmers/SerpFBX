@@ -5,20 +5,43 @@
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 			<style>
+
+			/*
 			body {
-				/* force full-screen of threejs */
 				width: 100%; height: 100%; 
-
-				/* set position to fixed starting top-left of screen */
-				/* fixed position causes the threejs to be stationary */
 				position: fixed; top: 0px; left: 0px; 
-
-				/* if you have other stuff on screen, you want to bring this threejs object behind it */
 				z-index: 1000; 
 			}
 
 			#body{
 				background-color: transparent !important;
+			}
+			*/
+			html, body {
+			  width:  100%;
+			  height: 100%;
+			  margin: 0px;
+			  display: block;
+			  overflow: hidden;
+			  cursor: none;
+			  z-index: 1000; 
+			}
+
+			body{
+				margin:0;
+				padding: 0;
+				display: block;
+				justify-content: left;
+				overflow: hidden;
+				cursor: none;
+				
+			}
+
+			* {
+			  cursor:none;
+			}
+			*:hover{
+			  cursor:none;
 			}
 
 		</style>
