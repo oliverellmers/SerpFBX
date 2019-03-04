@@ -97,7 +97,7 @@
 				var reflectionCube = new THREE.CubeTextureLoader().load( urls );
 				reflectionCube.format = THREE.RGBFormat;
 
-				scene.background = reflectionCube;
+				//scene.background = reflectionCube;
 
 				//MATERIAL
 				var cubeMaterial = new THREE.MeshLambertMaterial( { color: 0xffffff, envMap: reflectionCube, combine: THREE.MixOperation, reflectivity: 1.5 } );
