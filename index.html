@@ -101,7 +101,7 @@
 			var fontSizeCurrent = 0;
 			var fontSizeTarget = 0;
 
-			var easing = 0.25;
+			var easing = 0.1;
 
 			function setup(){
 			  var c = createCanvas(windowWidth, windowHeight, P2D);
@@ -134,21 +134,22 @@
 			  fontSizeCurrent += fontSizeDiff * easing;
 
 			  if(isOverParagraph){
-			    fontWeightTarget = 200;
-			    fontSizeTarget = 13.5;
+			    fontWeightTarget = 180;
+			    fontSizeTarget = 11;
 			    fontSizeStr = fontSizeCurrent + "vw";
 			    paragraph.style("font-size", fontSizeStr);
-			    paragraph.style("color:rgba(0,0,0,255);");
+			    paragraph.style("color:rgba(255,255,255,255);");
 			  }else{
-			    fontWeightTarget = 200;
-			    fontSizeTarget = 13.5;
+			    fontWeightTarget = 100;
+			    fontSizeTarget = 11;
 			    fontSizeStr = fontSizeCurrent + "vw";
 			    paragraph.style("font-size", fontSizeStr);
-			    paragraph.style("color:rgba(0,0,0,255);");
+			    paragraph.style("color:rgba(255,255,255,255);");
 			  }
 
-			  paragraph.elt.style['font-variation-settings'] = `"wght" ${fontWeightCurrent}, "wdth" ${125}`;
+			  paragraph.elt.style['font-variation-settings'] = `"wght" ${fontWeightCurrent}, "wdth" ${115}`;
 			  paragraph.center();
+			  blendMode(EXCLUSION );
 			}
 
 			//THREEJS

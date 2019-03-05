@@ -27,7 +27,7 @@ body, #threejsDiv{
 		justify-content: left;
 		overflow: hidden;
 		cursor: none;
-		z-index: 100;
+
       }
 
 * {
@@ -39,6 +39,7 @@ body, #threejsDiv{
 
 #body{
 	background-color: transparent !important;
+
 }
 
 .wrapper {
@@ -46,6 +47,7 @@ body, #threejsDiv{
 	position:absolute;
 	width:100vw;
 	height:100vw;
+
 }
 
 .cursor {
@@ -74,12 +76,7 @@ body, #threejsDiv{
 }
 
 
-#multiCanvas{
-	margin:0;
-	padding:0;
-	overflow: hidden;
-	position:absolute;
-}
+
 
 @font-face{
 	src:url("assets/AgendaGX.ttf")
@@ -95,9 +92,8 @@ body, #threejsDiv{
 	font-size: 13.5vw;
 	font-variation-settings: "Weight" 10, "Width" 10;
 	text-align: center;
-	fill:none;
-	stroke-width: 0.015;
-	stroke: #fff;
+	mix-blend-mode: difference;
+
 	
 }
 
