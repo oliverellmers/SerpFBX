@@ -1,0 +1,103 @@
+
+html, body {
+	width:  100%;
+	height: 100%;
+	margin: 0px;
+	display: block;
+	overflow: hidden;
+	cursor: none;
+	
+}
+
+body, #threejsDiv{
+	margin:0;
+	padding: 0;
+	display: block;
+	justify-content: left;
+	overflow: hidden;
+	cursor: none;
+
+}
+
+#p5Div {
+		position: absolute;
+		margin:0;
+		padding: 0;
+		display: block;
+		justify-content: left;
+		overflow: hidden;
+		cursor: none;
+		z-index: 100;
+      }
+
+* {
+	cursor:none;
+}
+*:hover{
+	cursor:none;
+}
+
+#body{
+	background-color: transparent !important;
+}
+
+.wrapper {
+	background-color: red;
+	position:absolute;
+	width:100vw;
+	height:100vw;
+}
+
+.cursor {
+
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	top: -50%;
+	left: -50%;
+	margin: -15px 0 0 -15px;
+	border-radius: 50%;
+	background-color: white;
+	backface-visibility: hidden;
+	mix-blend-mode: difference;
+	z-index: 100000;
+	pointer-events: none;
+
+}
+
+.cursor.is-moving {
+}
+
+.content_cursor {
+	position:relative;
+	height:100%;
+}
+
+
+#multiCanvas{
+	margin:0;
+	padding:0;
+	overflow: hidden;
+	position:absolute;
+}
+
+@font-face{
+	src:url("assets/AgendaGX.ttf")
+	format("truetype");
+	font-family:Agenda;
+}
+
+.pClass{
+	width:100%;
+	margin:0;
+	overflow: hidden;
+	font-family: Agenda;
+	font-size: 13.5vw;
+	font-variation-settings: "Weight" 10, "Width" 10;
+	text-align: center;
+	fill:none;
+	stroke-width: 0.015;
+	stroke: #fff;
+	
+}
+
