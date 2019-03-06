@@ -92,7 +92,7 @@ body, #threejsDiv{
 	font-size: 13.5vw;
 	font-variation-settings: "Weight" 10, "Width" 10;
 	text-align: center;
-	mix-blend-mode: difference;
+	//mix-blend-mode: difference;
 
 	
 }

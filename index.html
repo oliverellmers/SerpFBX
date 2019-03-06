@@ -87,7 +87,11 @@
 		<div id='threejs'></div>
 
 		<script>
-			//P5JS
+			// GLOBAL VARS
+
+			var isLoading = true;
+
+			//P5JS VARS
 			var isOverParagraph = false;
 			var paragraph;
 			var pWeight = 10;
@@ -100,14 +104,13 @@
 			var fontSizeStr = "vw";
 			var fontSizeCurrent = 0;
 			var fontSizeTarget = 0;
-
 			var easing = 0.1;
 
 			function setup(){
 			  var c = createCanvas(windowWidth, windowHeight, P2D);
 			  c.parent('p5Div');
 			  c.style('display', 'block');
-			  paragraph = createP("Oliver Ellmers");
+			  paragraph = createP("wait for it...");
 			  paragraph.class("pClass");
 			 
 			  paragraph.position(0,0);
@@ -134,6 +137,7 @@
 			  var fontSizeDiff = fontSizeTarget - fontSizeCurrent;
 			  fontSizeCurrent += fontSizeDiff * easing;
 
+			  /*
 			  if(isOverParagraph){
 			    fontWeightTarget = 180;
 			    fontSizeTarget = 11;
@@ -147,6 +151,20 @@
 			    paragraph.style("font-size", fontSizeStr);
 			    paragraph.style("color:rgba(255,255,255,0);");
 			  }
+			  */
+
+			  if(!isLoading){
+			  	fontWeightTarget = 100;
+			    fontSizeTarget = 0;
+			    fontSizeStr = "color:rgba(0,0,0," + fontSizeCurrent + ");";
+			    paragraph.style(fontSizeStr);
+			}else{
+				fontWeightTarget = 100;
+			    fontSizeTarget = 11;
+			    fontSizeStr = fontSizeCurrent + "vw";
+			    paragraph.style("font-size", fontSizeStr);
+			    paragraph.style("color:rgba(0,0,0,255);");
+			}
 
 			  paragraph.elt.style['font-variation-settings'] = `"wght" ${fontWeightCurrent}, "wdth" ${115}`;
 			  paragraph.center();
@@ -168,6 +186,7 @@
 
 
 			function init() {
+				isLoading = true;
 
 				container = document.createElement( 'div' );
 				document.body.appendChild( container );
@@ -206,6 +225,18 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				renderer.shadowMap.enabled = true;
 
+				//LOADING PROGRESS
+				var onProgress = function(xhr){
+					if(xhr.lengthComputable){
+						var percentageComplete = xhr.loaded / xhr.total * 100;
+						console.log(Math.round(percentageComplete, 2) + '% downloaded');
+						if(percentageComplete == 100){
+							console.log('loading complete');
+							isLoading = false;
+						}
+					}
+				};
+
 
 				//CUBE LOADER
 				var r = "textures/cube/optimised/";
@@ -232,7 +263,6 @@
 
 
 				// FBX LOADING
-				
 				var loader = new THREE.FBXLoader();
 				loader.load( 'models/fbx/ArchitraveAnim.fbx', function ( object ) {
 
@@ -269,7 +299,7 @@
 					} );
 
 					scene.add( object );
-				} );
+				}, onProgress);
 				
 
 				container.appendChild( renderer.domElement );
