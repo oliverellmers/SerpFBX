@@ -104,7 +104,7 @@
 			var fontSizeStr = "vw";
 			var fontSizeCurrent = 0;
 			var fontSizeTarget = 0;
-			var easing = 0.1;
+			var easing = 0.45;
 
 			function setup(){
 			  var c = createCanvas(windowWidth, windowHeight, P2D);
@@ -156,11 +156,12 @@
 			  if(!isLoading){
 			  	fontWeightTarget = 100;
 			    fontSizeTarget = 0;
+			    paragraph.style("font-size", 8);
 			    fontSizeStr = "color:rgba(0,0,0," + fontSizeCurrent + ");";
 			    paragraph.style(fontSizeStr);
 			}else{
 				fontWeightTarget = 100;
-			    fontSizeTarget = 11;
+			    fontSizeTarget = 8;
 			    fontSizeStr = fontSizeCurrent + "vw";
 			    paragraph.style("font-size", fontSizeStr);
 			    paragraph.style("color:rgba(0,0,0,255);");
