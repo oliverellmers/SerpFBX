@@ -240,7 +240,7 @@
 
 
 				//CUBE LOADER
-				var r = "textures/cube/optimised/";
+				var r = "textures/cube/optimised/512/";
 				var urls = [
 					r + "px_final.jpg", r + "nx_final.jpg",
 					r + "py_final.jpg", r + "ny_final.jpg",
@@ -265,7 +265,7 @@
 
 				// FBX LOADING
 				var loader = new THREE.FBXLoader();
-				loader.load( 'models/fbx/ArchitraveAnim.fbx', function ( object ) {
+				loader.load( 'models/fbx/ArchitraveAnim_Reduced.fbx', function ( object ) {
 
 					mixer = new THREE.AnimationMixer( object );
 
